@@ -2,10 +2,10 @@
 
 A modern web platform designed to help students of Politeknik Statistika STIS find their ideal boarding house (Kos). This project also provides an intuitive dashboard for property owners to manage their listings.
 
-![KosinAja Screenshot]()
-![KosinAja Screenshot]()
-![KosinAja Screenshot]()
-![KosinAja Screenshot]()
+![KosinAja Screenshot](kosinaja_view1)
+![KosinAja Screenshot](kosinaja_view2)
+![KosinAja Screenshot](kosinaja_view3)
+![KosinAja Screenshot](kosinaja_view4)
 
 ## About The Project
 
@@ -104,4 +104,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ---
 
-created by Xavier Yubin Raditio
+Created by Xavier Yubin Raditio

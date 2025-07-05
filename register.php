@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - KosinAja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="glass-card">
+        <nav>
+            <a href="index.php" class="logo">KosinAja</a>
+            <div class="nav-links">
+                <a href="index.php#popular">Pilihan Kos</a>
+                <a href="index.php#features">Fitur</a>
+                <a href="index.php#about">Tentang</a>
+                <a href="kontak.php">Kontak</a>
+            </div>
+            <div class="nav-auth">
+                 <?php if (isset($_SESSION['user_id'])): ?>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-username"><?= htmlspecialchars($_SESSION['username']) ?> &#9662;</a>
+                        <div class="dropdown-menu glass-card">
+                            <a href="<?= $_SESSION['role'] == 'owner' ? 'dashboard.php' : 'profile.php' ?>">Dashboard</a>
+                            <a href="#">Pengaturan Akun</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="logout.php">Logout</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="login.php" class="btn-secondary">Login</a>
+                    <a href="register.php" class="btn-primary">Register</a>
+                <?php endif; ?>
+            </div>
+            <!-- Hamburger menu icon -->
+            <div class="hamburger-menu">&#9776;</div>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+        <a href="index.php#popular">Pilihan Kos</a>
+        <a href="index.php#features">Fitur</a>
+        <a href="index.php#about">Tentang</a>
+        <a href="kontak.php">Kontak</a>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'owner'): ?>
+                <a href="dashboard.php">Dashboard Saya</a>
+            <?php else: ?>
+                <a href="profile.php">Profil Saya</a>
+            <?php endif; ?>
+            <a href="logout.php">Logout</a>
+        <?php else: ?>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+        <?php endif; ?>
+    </div>
+
+    <div class="form-container glass-card">
+        <h2>Buat Akun Baru</h2>
+
+        <?php
+        if (isset($_GET['status'])) {
+            if ($_GET['status'] == 'duplicate') {
+                echo '<p class="error-message">Username atau email sudah terdaftar. Gunakan yang lain.</p>';
+            } elseif ($_GET['status'] == 'pwd_invalid') {
+                // PESAN ERROR UNTUK PASSWORD
+                echo '<p class="error-message">Password tidak valid! Harus minimal 8 karakter dan mengandung huruf serta angka.</p>';
+            } elseif ($_GET['status'] == 'dberror') {
+                echo '<p class="error-message">Terjadi kesalahan pada database. Coba lagi nanti.</p>';
+            }
+        }
+        ?>
+
+        <form action="php/user_auth.php" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    minlength="8"
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                    title="Password harus minimal 8 karakter, mengandung setidaknya satu huruf dan satu angka.">
+            </div>
+            <div class="form-group">
+                <label>Daftar sebagai:</label>
+                <div class="role-selector">
+                    <input type="radio" id="customer" name="role" value="customer" checked>
+                    <label for="customer">Pencari Kos</label>
+                    <input type="radio" id="owner" name="role" value="owner">
+                    <label for="owner">Pemilik Kos</label>
+                </div>
+            </div>
+            <button type="submit" name="register" class="btn-submit">Register</button>
+            <div class="form-link">
+                <p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
+            </div>
+        </form>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -2,10 +2,10 @@
 
 A modern web platform designed to help students of Politeknik Statistika STIS find their ideal boarding house (Kos). This project also provides an intuitive dashboard for property owners to manage their listings.
 
-![KosinAja Screenshot](kosinaja_view1)
-![KosinAja Screenshot](kosinaja_view2)
-![KosinAja Screenshot](kosinaja_view3)
-![KosinAja Screenshot](kosinaja_view4)
+![KosinAja Screenshot](kosinaja_view1.png)
+![KosinAja Screenshot](kosinaja_view2.png)
+![KosinAja Screenshot](kosinaja_view3.png)
+![KosinAja Screenshot](kosinaja_view4.png)
 
 ## About The Project
 
